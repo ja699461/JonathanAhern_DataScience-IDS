@@ -1,0 +1,59 @@
+use ids2db;
+select infant,Year
+from child_mortality
+order by Infant desc;
+select *
+from child_mortality;
+select avg(UnderFive),Avg(Infant),Avg(Neonatal),
+min(UnderFive),min(Infant),min(Neonatal),
+max(UnderFive),max(Infant),max(Neonatal),
+variance(UnderFive),variance(Infant),variance(Neonatal)
+from child_mortality;
+
+select Year
+From child_mortality
+where Neonatal>27.5;
+
+update USArrests
+set Assault=170
+where State="Georgia";
+
+select avg(Murder),Avg(Assault),Avg(UrbanPop),
+min(Murder),min(Assault),min(UrbanPop),
+max(Murder),max(Assault),max(UrbanPop),
+variance(Murder),variance(Assault),variance(UrbanPop)
+from USArrests;
+
+select Murder,State
+From USArrests
+WHERE (Murder) IN 
+	(select Max(Murder)
+	From USArrests);
+
+select State,Murder
+From USArrests
+order by UrbanPop asc;
+
+select State
+From USArrests
+order by UrbanPop asc;
+
+select State,Murder
+From USArrests
+where State="Arizona";
+
+select State
+From USArrests
+where Murder>8.1
+order by Murder asc;                          
+
+alter table child_mortality
+add AboveFive double;
+
+select *
+from child_mortality;
+SET SQL_SAFE_UPDATES=0;
+update child_mortality
+set AboveFive = 41.3
+where Year=2016;
+DELETE FROM child_mortality WHERE year is null;
